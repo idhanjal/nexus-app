@@ -6,6 +6,22 @@ import requests
 import os
 from streamlit_lottie import st_lottie
 
+st.set_page_config(
+    page_title="Nexus App",
+    page_icon="✨",
+    initial_sidebar_state="expanded"
+)
+
+hide_github = """
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+</style>
+"""
+
+st.markdown(hide_github, unsafe_allow_html=True)
+
 # 1. BRAIN SETUP
 API_KEY = "AIzaSyD-0zM_rIjHQMKtw_Ywl0v0DioQEXCA9Yc"
 genai.configure(api_key=API_KEY)
@@ -90,4 +106,5 @@ if user_query := st.chat_input("Tell the Nexus your interests..."):
                 response = model.generate_content(prompt)
                 st.write(response.text)
         else:
+
             st.error("I don't have the club list data to help you yet!")
